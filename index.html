@@ -25,13 +25,12 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.css" />
   </head>
-  <body>
+  <body >
     <div
-      class="body bg-[#faf5f5a4] min-h-screen max-w-md mx-auto rounded-xl border-t-4 border-[#212121] border-b-4 my-10"
+      class="body bg-[#faf5f5a4] min-h-screen max-w-md mx-auto rounded-xl border-t-4 border-[#212121] border-b-4 "
     >
-      <div class="logo w-[250px] mx-auto pt-30 space-y-3">
+      <div class="logo w-[250px] mx-auto pt-20 space-y-3">
         <img
           class="rounded-full mx-auto shadow-2xl outline-3 outline-offset-4"
           src="./assets/github-logo.png"
@@ -50,22 +49,22 @@
         <div class="card-body">
           <fieldset class="fieldset">
             <label class="label"></label>
-            <input
+            <input id="User_name"
               type="text"
               class="input rounded-xl"
               placeholder="Enter User Name"
-              max-length="20"
+              maxlength="20"
             />
             <p class="text-blue-600 font-semibold pl-2">Default: admin</p>
             <label class="label font-bold text-black text-xs">Password</label>
-            <input
+            <input id="User_password"
               type="password"
               class="input rounded-xl"
               placeholder="Password"
-              max-length="20"
+              maxlength="20"
             />
             <p class="text-blue-600 font-semibold pl-2">Default: admin123</p>
-            <button type="button" class="btn btn-primary mt-4 rounded-2xl">
+            <button id="login_btn" type="button" class="btn btn-primary mt-4 rounded-2xl">
               Login
             </button>
             <div class="mx-auto font-semibold text-blue-600">
@@ -89,7 +88,7 @@
         </div>
       </div>
     </div>
-    <script src="login.js"></script>
+   <script src="login.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
