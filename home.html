@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>github || Home-Page</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>github || Home-Page</title>
+    <link
       rel="shortcut icon"
       href="./assets/git_logo.webp"
       type="image/x-icon"
@@ -23,11 +23,50 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
-      rel="stylesheet">
-</head>
-<body>
-
-  hello world
-
-</body>
+      rel="stylesheet"
+    />
+    <!-- using inline css  -->
+    <style>
+      * {
+        font-family: 'Geist', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="w-11/12 mx-auto">
+      <div class="navbar bg-base-100 shadow-sm">
+        <div class="flex-1">
+          <div class="flex items-center gap-3">
+            <img class="w-10" src="./assets/github-logo.png" alt="" />
+            <p class="text-[18px] font-semibold sm:hidden lg:block">
+              GitHub Issues Tracker
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="flex gap-2 relative">
+            <input
+              type="text"
+              placeholder="Search"
+              class="input input-bordered w-24 md:w-auto pl-12"
+            />
+            <span
+              ><i
+                class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 px-1 opacity-70"
+              ></i
+            ></span>
+            <button type="button" class="btn btn-primary">+ New Issue</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="w-11/12 mx-auto mt-10  shadow-xl rounded-2xl">
+      <div class="p-6 bg-base-300 rounded-xl">
+        <button class="btn " type="button">All</button>
+        <button class="btn " type="button">Open</button>
+        <button class="btn " type="button">Closed</button>
+      </div>
+    </main>
+    <script src="home.js"></script>
+  </body>
 </html>
