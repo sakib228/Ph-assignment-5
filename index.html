@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>github || login</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/git_logo.webp"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div
+      class="body bg-[#faf5f5a4] min-h-screen max-w-md mx-auto rounded-xl border-t-4 border-[#212121] border-b-4 my-10"
+    >
+      <div class="logo w-[250px] mx-auto pt-30 space-y-3">
+        <img
+          class="rounded-full mx-auto shadow-2xl outline-3 outline-offset-4"
+          src="./assets/github-logo.png"
+          alt="GitHub Logo"
+        />
+        <div class="mx-auto text-center">
+          <h1 class="font-semibold text-[20px]">GitHub Issues Tracker</h1>
+          <p class="font-[regular] text-[14px] text-[#97aac5]">
+            Sign in to manage your issues
+          </p>
+        </div>
+      </div>
+      <div
+        class="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl mx-auto mt-10 border-t-2 border-[#0b79ff] border-b-2"
+      >
+        <div class="card-body">
+          <fieldset class="fieldset">
+            <label class="label"></label>
+            <input
+              type="text"
+              class="input rounded-xl"
+              placeholder="Enter User Name"
+              max-length="20"
+            />
+            <p class="text-blue-600 font-semibold pl-2">Default: admin</p>
+            <label class="label font-bold text-black text-xs">Password</label>
+            <input
+              type="password"
+              class="input rounded-xl"
+              placeholder="Password"
+              max-length="20"
+            />
+            <p class="text-blue-600 font-semibold pl-2">Default: admin123</p>
+            <button type="button" class="btn btn-primary mt-4 rounded-2xl">
+              Login
+            </button>
+            <div class="mx-auto font-semibold text-blue-600">
+              <a class="link link-hover">Forgot password?</a>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="flex items-center my-1 mx-4">
+        <div class="border-t grow text-gray-300"></div>
+        <span class="text-gray-500 font-semibold p-2">Or</span>
+        <div class="border-t grow text-gray-300"></div>
+      </div>
+      <div class="mx-auto text-center">
+        <p class="font-light text-[15px]">Demo Credentials:</p>
+        <div
+          class="text-center bg-gray-200 px-4 py-4 rounded-lg mt-2 w-2/3 mx-auto my-4"
+        >
+          <h3><span class="font-bold">Username</span>: admin</h3>
+          <h3><span class="font-bold">Password</span>: admin123</h3>
+        </div>
+      </div>
+    </div>
+    <script src="login.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
