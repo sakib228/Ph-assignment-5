@@ -3,3 +3,8 @@
 *{
  font-family: "Geist", sans-serif;
 }
+ .active_btn{
+        background-color: rgb(50, 235, 115);
+        color: black;
+        font-weight: 500;
+      }

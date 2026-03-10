@@ -20,9 +20,9 @@ const allDataDisplay = (details) => {
     // console.log(detail); ---
     const div = document.createElement('div');
     div.innerHTML = `
-    <div class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)}" >
+    <div class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)} grow flex-col" >
         <div class="flex justify-between">
-          <span><i class="fa-solid fa-circle text-green-400"></i></span>
+          <span><i class=" outline-2 outline-offset-3 outline-green-800-950 rounded-full fa-solid fa-circle text-green-400"></i></span>
           <span class=" px-6 py-1 rounded-xl ${getPriority(detail.priority)} ">
             ${detail.priority}
           </span>
@@ -68,21 +68,27 @@ function getPriority(priority) {
   }
 }
 // allButton -------------------------------
-document.getElementById('allBtn').addEventListener("click", function () {
+document.getElementById('allBtn').addEventListener('click', function () {
+  removeActive();
+  this.classList.add('active_btn');
   allDataDisplay(allIssue);
 });
 // openButton
-document.getElementById('openBtn').addEventListener("click", function () {
+document.getElementById('openBtn').addEventListener('click', function () {
+  removeActive();
+  this.classList.add('active_btn');
   const openButton = allIssue.filter((data) => data.status === 'open');
   allDataDisplay(openButton);
 });
 
 //closedButton
-document.getElementById('closedBtn').addEventListener("click", function () {
+document.getElementById('closedBtn').addEventListener('click', function () {
+  removeActive();
+  this.classList.add('active_btn');
   const closeButton = allIssue.filter((data) => data.status === 'closed');
   allDataDisplay(closeButton);
 });
-// get border button color
+// get border card color
 function getBorderColor(status) {
   if (status === 'open') {
     return 'border-y-4 border-green-500';
@@ -91,4 +97,25 @@ function getBorderColor(status) {
     return 'border-y-4 border-red-500';
   }
 }
+
+// button click and focus status use js ---
+function removeActive() {
+  const removeActiveButton = document.querySelectorAll('.btn');
+  removeActiveButton.forEach((data) => {
+    data.classList.remove('active_btn');
+  });
+}
+
+// data Searching --- >
+document.getElementById('newIssueBtn').addEventListener("click", function () {
+  const userInput = document.getElementById('getDataUser');
+  const findData = userInput.value.trim().toLowerCase();
+  console.log(findData);
+
+  const filterWord = allIssue.filter((data) =>
+    data.title.toLowerCase().includes(findData)
+  );
+  allDataDisplay(filterWord);
+})
+
 allDataIssue();

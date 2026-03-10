@@ -30,6 +30,11 @@
       * {
         font-family: 'Geist', sans-serif;
       }
+      .active_btn{
+        background-color: rgb(50, 235, 115);
+        color: black;
+        font-weight: 500;
+      }
     </style>
   </head>
   <body>
@@ -38,12 +43,12 @@
         <div class="flex-1">
           <div class="flex items-center gap-3">
             <img class="w-10" src="./assets/github-logo.png" alt="" />
-            <p class="text-[18px] font-semibold">GitHub Issues Tracker</p>
+            <p class="text-[18px] font-semibold hidden lg:block md:block">GitHub Issues Tracker</p>
           </div>
         </div>
         <div>
           <div class="flex gap-2 relative">
-            <input
+            <input id="getDataUser"
               type="text"
               placeholder="Search"
               class="input input-bordered w-24 md:w-auto pl-12"
@@ -53,21 +58,21 @@
                 class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 px-1 opacity-70"
               ></i
             ></span>
-            <button type="button" class="btn btn-primary">+ New Issue</button>
+            <button id="newIssueBtn" type="button" class="btn btn-primary">+ New Issue</button>
           </div>
         </div>
       </div>
     </header>
     <main class="w-11/12 mx-auto mt-10 shadow-xl rounded-2xl">
       <div class="p-6 bg-base-300 rounded-xl">
-        <button id="allBtn" class="btn" type="button">All</button>
+        <button id="allBtn" class="btn active_btn" type="button">All</button>
         <button id="openBtn" class="btn" type="button">Open</button>
         <button id="closedBtn" class="btn" type="button">Closed</button>
       </div>
     </main>
     <section
       id="main_container"
-      class="w-11/12 mx-auto my-6 rounded-xl shadow-xl p-10 space-y-8 grid grid-cols-4 bg-base-300 gap-4"
+      class="w-11/12 mx-auto my-6 rounded-xl shadow-xl p-10 space-y-8 grid grid-cols-1 bg-base-300 gap-4 md:grid-cols-2 lg:grid-cols-4"
     >
 
     </section>
