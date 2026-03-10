@@ -11,12 +11,11 @@ document.getElementById('login_btn').addEventListener('click', function () {
 
   if (inputValue === 'admin' && passwordValue === 'admin123') {
     alert('Login successful!');
-    window.location.assign("/home.html");
+    window.location.assign('home.html');
   } else {
     alert('Invalid username or password.');
     return;
   }
-
 });
 
 // 2.get Elements by id of 2 inputs
