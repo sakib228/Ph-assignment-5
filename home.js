@@ -115,7 +115,20 @@ document.getElementById('newIssueBtn').addEventListener("click", function () {
   const filterWord = allIssue.filter((data) =>
     data.title.toLowerCase().includes(findData)
   );
+
+  // main container , there i will show my cards and not found cards ---
+  
+  const container = document.getElementById('main_container');
+
+  if (filterWord.length === 0) {
+    container.innerHTML = `
+    <div class="text-center py-10 mx-auto col-span-6">
+      <h2 class="text-2xl font-bold text-red-500">❌ No Issue Found</h2>
+    </div>
+  `;
+    return;
+  }
+
   allDataDisplay(filterWord);
 })
-
 allDataIssue();
