@@ -30,7 +30,7 @@
       * {
         font-family: 'Geist', sans-serif;
       }
-      .active_btn{
+      .active_btn {
         background-color: rgb(50, 235, 115);
         color: black;
         font-weight: 500;
@@ -43,12 +43,15 @@
         <div class="flex-1">
           <div class="flex items-center gap-3">
             <img class="w-10" src="./assets/github-logo.png" alt="" />
-            <p class="text-[18px] font-semibold hidden lg:block md:block">GitHub Issues Tracker</p>
+            <p class="text-[18px] font-semibold hidden lg:block md:block">
+              GitHub Issues Tracker
+            </p>
           </div>
         </div>
         <div>
           <div class="flex gap-2 relative">
-            <input id="getDataUser"
+            <input
+              id="getDataUser"
               type="text"
               placeholder="Search"
               class="input input-bordered w-24 md:w-auto pl-12"
@@ -58,7 +61,9 @@
                 class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 px-1 opacity-70"
               ></i
             ></span>
-            <button id="newIssueBtn" type="button" class="btn btn-primary">+ New Issue</button>
+            <button id="newIssueBtn" type="button" class="btn btn-primary">
+              + New Issue
+            </button>
           </div>
         </div>
       </div>
@@ -73,9 +78,23 @@
     <section
       id="main_container"
       class="w-11/12 mx-auto my-6 rounded-xl shadow-xl p-10 space-y-8 grid grid-cols-1 bg-base-300 gap-4 md:grid-cols-2 lg:grid-cols-4"
-    >
-
-    </section>
+    ></section>
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="main_containers" class="space-y-6">
+         
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-primary">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
     <script src="home.js"></script>
   </body>
 </html>

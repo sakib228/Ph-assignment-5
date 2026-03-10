@@ -17,10 +17,11 @@ const allDataDisplay = (details) => {
   mainContainer.innerHTML = '';
   // create card elements --- with for loop
   for (const detail of details) {
+    // console.log(detail.id)
     // console.log(detail); ---
     const div = document.createElement('div');
     div.innerHTML = `
-    <div class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)} grow flex-col" >
+    <div onclick="loadDataDetails(${detail.id})" class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)} grow flex-col" >
         <div class="flex justify-between">
           <span><i class=" outline-2 outline-offset-3 outline-green-800-950 rounded-full fa-solid fa-circle text-green-400"></i></span>
           <span class=" px-6 py-1 rounded-xl ${getPriority(detail.priority)} ">
@@ -46,8 +47,9 @@ const allDataDisplay = (details) => {
         </div>
         <span class="flex grow border-b-2 text-slate-300"></span>
         <div class="text-[#000000a8] font-semibold">
-          <p>#1 by john_doe</p>
-          <p>1/15/2024</p>
+          <p>${detail.author}</p>
+          <p>${detail.createdAt} </p>
+          <p>${detail.updatedAt} </p>
         </div>
       </div>
     `;
@@ -107,7 +109,7 @@ function removeActive() {
 }
 
 // data Searching --- >
-document.getElementById('newIssueBtn').addEventListener("click", function () {
+document.getElementById('newIssueBtn').addEventListener('click', function () {
   const userInput = document.getElementById('getDataUser');
   const findData = userInput.value.trim().toLowerCase();
   console.log(findData);
@@ -117,7 +119,7 @@ document.getElementById('newIssueBtn').addEventListener("click", function () {
   );
 
   // main container , there i will show my cards and not found cards ---
-  
+
   const container = document.getElementById('main_container');
 
   if (filterWord.length === 0) {
@@ -128,7 +130,62 @@ document.getElementById('newIssueBtn').addEventListener("click", function () {
   `;
     return;
   }
-
   allDataDisplay(filterWord);
-})
+});
+// modal display function --- load function ---
+const loadDataDetails = async (id) => {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+  const res = await fetch(url)
+  const data = await res.json()
+  console.log(data);
+ displayModal(data.data)
+}
+// modal dispAly function ---
+const displayModal = (word) => {
+  console.log(word)
+  const mainBox = document.getElementById('main_containers');
+  mainBox.innerHTML = `
+   <div class="space-y-6 bg-amber-100 p-6 rounded-xl">
+            <h1 class="text-xl font-bold">${word.title}</h1>
+            <div class="flex gap-3 items-center">
+              <button class="py-1 px-3 rounded-2xl border-2 border-amber-700">
+                opened
+              </button>
+              <p class="text-[12px] text-center ">
+                <i class="fa-solid fa-caret-right"></i> Opened by '${word.author}'
+              </p>
+              <p class="text-[12px] text-center ">
+                <i class="fa-solid fa-caret-right"></i> ${word.updatedAt}
+              </p>
+            </div>
+            <span
+              class="px-4 py-1 bg-red-300 rounded-2xl border-2 border-red-600"
+              ><i class="fa-solid fa-bug text-red-600"></i> Bug</span
+            >
+            <span
+              class="px-3 py-1 bg-yellow-200 rounded-2xl border-2 border-yellow-600"
+              ><i class="fa-brands fa-slack text-yellow-600"></i> help
+              wanted</span
+            >
+          </div>
+          <p>
+            The navigation menu doesn't collapse properly on mobile devices.
+            Need to fix the responsive behavior.
+          </p>
+          <div
+            class="grid grid-cols-2 space-y-3 justify-evenly bg-[#ebd9d9eb] p-4 rounded-xl"
+          >
+            <div>
+              <p>Assignee:</p>
+              <p> ${word.author} </p>
+            </div>
+            <div>
+              <p>Priority:</p>
+              <span class="bg-red-300 py-1 px-3 rounded-3xl mt-1">${word.priority}</span>
+            </div>
+          </div>
+
+  `;
+  document.getElementById('my_modal_5').showModal();
+}
 allDataIssue();
