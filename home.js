@@ -3,9 +3,12 @@
 const allDataIssue = () => {
   fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
     .then((res) => res.json())
-    .then((data) => allDataDisplay(data.data));
+    .then((data) => {
+      allIssue = data.data;
+      allDataDisplay(allIssue);
+    });
 };
-// display data ---
+// display data function ---
 const allDataDisplay = (details) => {
   // console.log(details);
   // get main section container ---
@@ -17,10 +20,10 @@ const allDataDisplay = (details) => {
     // console.log(detail); ---
     const div = document.createElement('div');
     div.innerHTML = `
-    <div class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full" >
+    <div class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)}" >
         <div class="flex justify-between">
           <span><i class="fa-solid fa-circle text-green-400"></i></span>
-          <span class=" px-6 py-1 rounded-2xl ${getPriority(detail.priority)}">
+          <span class=" px-6 py-1 rounded-xl ${getPriority(detail.priority)} ">
             ${detail.priority}
           </span>
         </div>
@@ -52,16 +55,40 @@ const allDataDisplay = (details) => {
   }
 };
 
-// color priority function
+// color priority function ---------------------------
 function getPriority(priority) {
-  if (priority === "high") {
-    return "bg-red-300 text-red-600"
+  if (priority === 'high') {
+    return 'bg-red-300 text-red-600';
   }
-  if (priority === "medium") {
-    return "bg-yellow-300 text-yellow-600"
+  if (priority === 'medium') {
+    return 'bg-yellow-300 text-yellow-600';
   }
-  if (priority === "low") {
-    return " bg-gray-300 text-gray-600"
+  if (priority === 'low') {
+    return ' bg-gray-300 text-gray-600';
+  }
+}
+// allButton -------------------------------
+document.getElementById('allBtn').addEventListener("click", function () {
+  allDataDisplay(allIssue);
+});
+// openButton
+document.getElementById('openBtn').addEventListener("click", function () {
+  const openButton = allIssue.filter((data) => data.status === 'open');
+  allDataDisplay(openButton);
+});
+
+//closedButton
+document.getElementById('closedBtn').addEventListener("click", function () {
+  const closeButton = allIssue.filter((data) => data.status === 'closed');
+  allDataDisplay(closeButton);
+});
+// get border button color
+function getBorderColor(status) {
+  if (status === 'open') {
+    return 'border-y-4 border-green-500';
+  }
+  if (status === 'closed') {
+    return 'border-y-4 border-red-500';
   }
 }
 allDataIssue();

@@ -33,7 +33,7 @@
     </style>
   </head>
   <body>
-    <header class="w-11/12 mx-auto">
+    <header class="w-11/12 mx-auto sticky top-0 z-50">
       <div class="navbar bg-base-100 shadow-sm">
         <div class="flex-1">
           <div class="flex items-center gap-3">
@@ -60,9 +60,9 @@
     </header>
     <main class="w-11/12 mx-auto mt-10 shadow-xl rounded-2xl">
       <div class="p-6 bg-base-300 rounded-xl">
-        <button onclick="showAll()" class="btn" type="button">All</button>
-        <button class="btn" type="button">Open</button>
-        <button class="btn" type="button">Closed</button>
+        <button id="allBtn" class="btn" type="button">All</button>
+        <button id="openBtn" class="btn" type="button">Open</button>
+        <button id="closedBtn" class="btn" type="button">Closed</button>
       </div>
     </main>
     <section
