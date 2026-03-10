@@ -11,7 +11,7 @@ document.getElementById('login_btn').addEventListener('click', function () {
 
   if (inputValue === 'admin' && passwordValue === 'admin123') {
     alert('Login successful!');
-    window.location.assign('./Ph-assignment-5/home.html');
+    window.location.assign('./home.html');
   } else {
     alert('Invalid username or password.');
     return;
