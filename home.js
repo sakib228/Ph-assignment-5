@@ -1,13 +1,67 @@
 // console.log("hello world")
-
+// load data function ---
 const allDataIssue = () => {
   fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
-    .then(res => res.json())
-    .then(data => allDataDisplay(data.data));
+    .then((res) => res.json())
+    .then((data) => allDataDisplay(data.data));
 };
-
-allDataIssue();
-
+// display data ---
 const allDataDisplay = (details) => {
-  console.log(details);
+  // console.log(details);
+  // get main section container ---
+  const mainContainer = document.getElementById('main_container');
+  // empty the main container  ---
+  mainContainer.innerHTML = '';
+  // create card elements --- with for loop
+  for (const detail of details) {
+    // console.log(detail); ---
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <div class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full" >
+        <div class="flex justify-between">
+          <span><i class="fa-solid fa-circle text-green-400"></i></span>
+          <span class=" px-6 py-1 rounded-2xl ${getPriority(detail.priority)}">
+            ${detail.priority}
+          </span>
+        </div>
+        <div class="space-y-3">
+          <h1 class="text-xl font-bold">
+            ${detail.title}
+          </h1>
+          <p class="text-[#17174aaa]">
+            ${detail.description}
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-4 py-1 bg-red-300 rounded-2xl border-2 border-red-600"
+            ><i class="fa-solid fa-bug text-red-600"></i> Bug</span
+          >
+          <span
+            class="px-3 py-1 bg-yellow-200 rounded-2xl border-2 border-yellow-600"
+            ><i class="fa-brands fa-slack text-yellow-600"></i> help wanted</span
+          >
+        </div>
+        <span class="flex grow border-b-2 text-slate-300"></span>
+        <div class="text-[#000000a8] font-semibold">
+          <p>#1 by john_doe</p>
+          <p>1/15/2024</p>
+        </div>
+      </div>
+    `;
+    mainContainer.appendChild(div);
+  }
 };
+
+// color priority function
+function getPriority(priority) {
+  if (priority === "high") {
+    return "bg-red-300 text-red-600"
+  }
+  if (priority === "medium") {
+    return "bg-yellow-300 text-yellow-600"
+  }
+  if (priority === "low") {
+    return " bg-gray-300 text-gray-600"
+  }
+}
+allDataIssue();
