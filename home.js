@@ -3,7 +3,6 @@
 //   const element = arr.map((data) => `<span> ${data}</span>`);
 //   return(element.join(" "));
 // };
-
 // load data function ---
 const allDataIssue = () => {
   fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
@@ -11,6 +10,7 @@ const allDataIssue = () => {
     .then((data) => {
       allIssue = data.data;
       allDataDisplay(allIssue);
+      updateCount(allIssue);
     });
 };
 // display data function ---
@@ -28,7 +28,7 @@ const allDataDisplay = (details) => {
     div.innerHTML = `
     <div onclick="loadDataDetails(${detail.id})" class="p-8 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)} grow flex-col" >
         <div class="flex justify-between">
-          <img src="/assets/Open-Status.png" alt="png" />
+          <img src="./assets/Open-Status.png" alt="png" />
           <span class=" px-6 py-1 rounded-xl ${getPriority(detail.priority)} ">
             ${detail.priority}
           </span>
@@ -41,7 +41,7 @@ const allDataDisplay = (details) => {
             ${detail.description}
           </p>
         </div>
-       <div class=" flex items-start gap-4 grow ">
+       <div class=" flex flex-wrap gap-2 mt-auto md:flex-row lg:flex-col ">
        <button class="btn flex items-center gap-1 bg-red-300 px-3 py-0.5 rounded-xl outline-1">
          <i class="fa-solid fa-bug text-red-600"></i>
            <span>${detail.labels[0]}</span>
@@ -76,11 +76,19 @@ function getPriority(priority) {
     return ' bg-gray-300 text-gray-600';
   }
 }
+// count function  ---
+function updateCount(data) {
+  const count = document.getElementById('countCard');
+  const countData = (count.innerText = data.length);
+  console.log(countData);
+}
+
 // allButton -------------------------------
 document.getElementById('allBtn').addEventListener('click', function () {
   removeActive();
   this.classList.add('active_btn');
   allDataDisplay(allIssue);
+  updateCount(allIssue);
 });
 // openButton
 document.getElementById('openBtn').addEventListener('click', function () {
@@ -88,6 +96,7 @@ document.getElementById('openBtn').addEventListener('click', function () {
   this.classList.add('active_btn');
   const openButton = allIssue.filter((data) => data.status === 'open');
   allDataDisplay(openButton);
+  updateCount(openButton);
 });
 
 //closedButton
@@ -96,6 +105,7 @@ document.getElementById('closedBtn').addEventListener('click', function () {
   this.classList.add('active_btn');
   const closeButton = allIssue.filter((data) => data.status === 'closed');
   allDataDisplay(closeButton);
+  updateCount(closeButton);
 });
 // get border card color
 function getBorderColor(status) {
