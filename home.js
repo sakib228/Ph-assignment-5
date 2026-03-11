@@ -1,4 +1,9 @@
 // console.log("hello world")
+// const htmlElement = (arr) => {
+//   const element = arr.map((data) => `<span> ${data}</span>`);
+//   return(element.join(" "));
+// };
+
 // load data function ---
 const allDataIssue = () => {
   fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
@@ -21,9 +26,9 @@ const allDataDisplay = (details) => {
     // console.log(detail); ---
     const div = document.createElement('div');
     div.innerHTML = `
-    <div onclick="loadDataDetails(${detail.id})" class="p-10 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)} grow flex-col" >
+    <div onclick="loadDataDetails(${detail.id})" class="p-8 space-y-8 max-w-md bg-[white] rounded-2xl h-full ${getBorderColor(detail.status)} grow flex-col" >
         <div class="flex justify-between">
-          <span><i class=" outline-2 outline-offset-3 outline-green-800-950 rounded-full fa-solid fa-circle text-green-400"></i></span>
+          <img src="/assets/Open-Status.png" alt="png" />
           <span class=" px-6 py-1 rounded-xl ${getPriority(detail.priority)} ">
             ${detail.priority}
           </span>
@@ -36,15 +41,17 @@ const allDataDisplay = (details) => {
             ${detail.description}
           </p>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="px-4 py-1 bg-red-300 rounded-2xl border-2 border-red-600"
-            ><i class="fa-solid fa-bug text-red-600"></i> Bug</span
-          >
-          <span
-            class="px-3 py-1 bg-yellow-200 rounded-2xl border-2 border-yellow-600"
-            ><i class="fa-brands fa-slack text-yellow-600"></i> help wanted</span
-          >
-        </div>
+       <div class=" flex items-start gap-4 grow ">
+       <button class="btn flex items-center gap-1 bg-red-300 px-3 py-0.5 rounded-xl outline-1">
+         <i class="fa-solid fa-bug text-red-600"></i>
+           <span>${detail.labels[0]}</span>
+         </button>
+
+       <button class="btn flex items-center gap-1 bg-amber-200 px-3 py-0.5      rounded-xl outline-1 ">
+         <i class="fa-brands fa-slack text-yellow-600"></i>
+         <span>${detail.labels[1]}</span>
+       </button>
+     </div>
         <span class="flex grow border-b-2 text-slate-300"></span>
         <div class="text-[#000000a8] font-semibold">
           <p>${detail.author}</p>
@@ -134,15 +141,15 @@ document.getElementById('newIssueBtn').addEventListener('click', function () {
 });
 // modal display function --- load function ---
 const loadDataDetails = async (id) => {
-  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
-  const res = await fetch(url)
-  const data = await res.json()
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
   console.log(data);
- displayModal(data.data)
-}
+  displayModal(data.data);
+};
 // modal dispAly function ---
 const displayModal = (word) => {
-  console.log(word)
+  console.log(word);
   const mainBox = document.getElementById('main_containers');
   mainBox.innerHTML = `
    <div class="space-y-6 bg-amber-100 p-6 rounded-xl">
@@ -158,15 +165,13 @@ const displayModal = (word) => {
                 <i class="fa-solid fa-caret-right"></i> ${word.updatedAt}
               </p>
             </div>
-            <span
+            <button
               class="px-4 py-1 bg-red-300 rounded-2xl border-2 border-red-600"
-              ><i class="fa-solid fa-bug text-red-600"></i> Bug</span
+              ><i class="fa-solid fa-bug text-red-600"></i> ${word.labels[0]}</button
             >
-            <span
+            <button
               class="px-3 py-1 bg-yellow-200 rounded-2xl border-2 border-yellow-600"
-              ><i class="fa-brands fa-slack text-yellow-600"></i> help
-              wanted</span
-            >
+              ><i class="fa-brands fa-slack text-yellow-600"></i> ${word.labels[1]}
           </div>
           <p>
             The navigation menu doesn't collapse properly on mobile devices.
@@ -181,11 +186,11 @@ const displayModal = (word) => {
             </div>
             <div>
               <p>Priority:</p>
-              <span class="bg-red-300 py-1 px-3 rounded-3xl mt-1">${word.priority}</span>
+              <span class="bg-red-300 py-0.5 px-3 rounded-3xl mt-1">${word.priority}</span>
             </div>
           </div>
 
   `;
   document.getElementById('my_modal_5').showModal();
-}
+};
 allDataIssue();
