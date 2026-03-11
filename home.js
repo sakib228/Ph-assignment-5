@@ -130,6 +130,7 @@ document.getElementById('newIssueBtn').addEventListener('click', function () {
   const userInput = document.getElementById('getDataUser');
   const findData = userInput.value.trim().toLowerCase();
   console.log(findData);
+  removeActive();
 
   const filterWord = allIssue.filter((data) =>
     data.title.toLowerCase().includes(findData)

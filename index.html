@@ -26,9 +26,9 @@
       rel="stylesheet"
     />
   </head>
-  <body >
+  <body class="bg-purple-100">
     <div
-      class="body bg-[#faf5f5a4] min-h-screen max-w-md mx-auto rounded-xl border-t-4 border-[#212121] border-b-4 "
+      class="body bg-[#ffffffcb] min-h-screen max-w-md mx-auto rounded-xl border-t-4 border-[#212121] border-b-4"
     >
       <div class="logo w-[250px] mx-auto pt-20 space-y-3">
         <img
@@ -49,7 +49,8 @@
         <div class="card-body">
           <fieldset class="fieldset">
             <label class="label"></label>
-            <input id="User_name"
+            <input
+              id="User_name"
               type="text"
               class="input rounded-xl"
               placeholder="Enter User Name"
@@ -57,14 +58,19 @@
             />
             <p class="text-blue-600 font-semibold pl-2">Default: admin</p>
             <label class="label font-bold text-black text-xs">Password</label>
-            <input id="User_password"
+            <input
+              id="User_password"
               type="password"
               class="input rounded-xl"
               placeholder="Password"
               maxlength="20"
             />
             <p class="text-blue-600 font-semibold pl-2">Default: admin123</p>
-            <button id="login_btn" type="button" class="btn btn-primary mt-4 rounded-2xl">
+            <button
+              id="login_btn"
+              type="button"
+              class="btn btn-primary mt-4 rounded-2xl"
+            >
               Login
             </button>
             <div class="mx-auto font-semibold text-blue-600">
@@ -88,7 +94,7 @@
         </div>
       </div>
     </div>
-   <script src="login.js"></script>
+    <script src="login.js"></script>
     <script src="home.js"></script>
   </body>
 </html>
