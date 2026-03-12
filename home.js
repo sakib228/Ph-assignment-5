@@ -129,6 +129,7 @@ function removeActive() {
 document.getElementById('newIssueBtn').addEventListener('click', function () {
   const userInput = document.getElementById('getDataUser');
   const findData = userInput.value.trim().toLowerCase();
+  userInput.value = '';
   console.log(findData);
   removeActive();
 
